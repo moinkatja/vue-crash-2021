@@ -1,7 +1,7 @@
 <template>
     <header>
         <h1>{{ title }}</h1>
-        <Button  
+        <Button v-show = "homePage"
             @btn-click="$emit('toggle-add-task')" 
             :color = "showAddTask ? 'red' : 'green' "
             :text = "showAddTask ? 'Close' : 'AddTask' "
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import Button from "./Button"
+import Button from "./Button" 
 export default {
     name: "Header",
     props: {
@@ -19,6 +19,15 @@ export default {
     },
     components: {
         Button
+    },
+    computed: {
+        homePage() {
+            if(this.$route.path === "/") {
+                return true
+            } else {
+                return false
+            }
+        }
     }
 }
 </script>
